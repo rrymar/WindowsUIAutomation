@@ -7,5 +7,5 @@
 - Install .NET Framework 4.5.2
 - Install and run Windows App Driver https://github.com/Microsoft/WinAppDriver
 - Build WindowsFormsApp app
-- Replace application path in `AutomationApp/AppSession.cs`
-- Run AutomationApp/Test1 as UnitTest (can be converted into console or service app)
+- Replace application path in `Constants/AppId`
+- Run AutomationApp/Test1 as UnitTest or Run AutomationApp as console app
