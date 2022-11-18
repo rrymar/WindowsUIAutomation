@@ -6,24 +6,26 @@ using OpenQA.Selenium;
 namespace AutomationApp
 {
     [TestClass]
-    public class Tests : AppSession
+    public class Tests
     {
+        private static AutomatedApp app;
+        
         [TestMethod]
         public void Test1()
         {
             Thread.Sleep(TimeSpan.FromSeconds(2));
 
-            var elements = session.FindElementsByXPath(@"//*");
+            var elements = app.Session.FindElementsByXPath(@"//*");
 
-            var textBoxes = session.FindElementsByTagName("Edit");
+            var textBoxes = app.Session.FindElementsByTagName("Edit");
             
             textBoxes[0].SendKeys("some text");
             textBoxes[1].SendKeys("some text 2");
             
-            var checkBox1 = session.FindElementByName("checkBox1");
+            var checkBox1 = app.Session.FindElementByName("checkBox1");
             checkBox1.Click();
             
-            var button = session.FindElementByName("button1"); 
+            var button = app.Session.FindElementByName("button1"); 
             button.Click();
             button.Click();
             Thread.Sleep(TimeSpan.FromSeconds(2));
@@ -32,13 +34,13 @@ namespace AutomationApp
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            Setup(context);
+            app = new AutomatedApp(@"C:\Dev\WindowsUIAutomation\WindowsFormsApp\bin\Debug\WindowsFormsApp.exe");
         }
 
         [ClassCleanup]
         public static void ClassCleanup()
         {
-            TearDown();
+            app?.Dispose();
         }
     }
 }
