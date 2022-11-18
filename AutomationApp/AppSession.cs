@@ -9,10 +9,9 @@ namespace AutomationApp
     public class AppSession
     {
         protected const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
-        private const string NotepadAppId = @"C:\Dev\WindowsUIAutomation\WindowsFormsApp\bin\Debug\WindowsFormsApp.exe";
+        private const string AppId = @"C:\Dev\WindowsUIAutomation\WindowsFormsApp\bin\Debug\WindowsFormsApp.exe";
 
         protected static WindowsDriver<WindowsElement> session;
-        protected static WindowsElement editBox;
 
         public static void Setup(TestContext context)
         {
@@ -21,7 +20,7 @@ namespace AutomationApp
             {
                 // Create a new session to launch Notepad application
                 DesiredCapabilities appCapabilities = new DesiredCapabilities();
-                appCapabilities.SetCapability("app", NotepadAppId);
+                appCapabilities.SetCapability("app", AppId);
                 session = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appCapabilities);
                 Assert.IsNotNull(session);
                 Assert.IsNotNull(session.SessionId);
